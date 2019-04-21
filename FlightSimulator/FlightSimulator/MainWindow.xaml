@@ -6,29 +6,65 @@
         xmlns:local="clr-namespace:FlightSimulator"
         xmlns:views="clr-namespace:FlightSimulator.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <views:Joystick Grid.Column="2" x:Name="MyJoystick" Grid.RowSpan="3">
-            
-        </views:Joystick>
+        Title="MainWindow" Height="650" Width="800">
+    <TabControl>
+        <TabItem Header="Gidi">
 
-        <Label Name="bla" Content="{Binding ElevatorString}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>
 
-        </Label>
+                <Slider Grid.Column="0" Name="Rudder_Slider" Grid.RowSpan="1" Orientation="Vertical" Margin="20" HorizontalAlignment="Center" Minimum="0" Maximum="1"
+                Value="{Binding Throttle}">
 
-        <Label Grid.Row="1" Content="{Binding AileronString}">
+                </Slider>
 
-        </Label>
+                <views:Joystick Grid.Column="1" x:Name="MyJoystick" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-        <Button Click="Button_Click" Grid.Row="2"></Button>
-    </Grid>
+                </views:Joystick>
+
+                <Slider Grid.Column="2" Value="{Binding Rudder}" Grid.RowSpan="1" Grid.Row="3" Margin="20" Minimum="-1" Maximum="1">
+
+                </Slider>
+
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Content="{Binding ThrottleString}"></Label>
+                    <Label Grid.Row="1" Content="{Binding RudderString}"></Label>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="David ben david">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="0" Name="text_box">
+                    
+                </TextBox>
+                
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Content="OK" Click="Button_Click"></Button>
+
+                    <Button Grid.Column="1" Content="Clear" Click="Button_Clear"></Button>
+                </Grid>
+
+            </Grid>
+        </TabItem>
+    </TabControl>
 </Window>

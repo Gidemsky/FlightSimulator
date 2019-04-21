@@ -11,16 +11,28 @@ namespace FlightSimulator
 {
     class DataCommunication
     {
-        public static void Send_string(string s)
+        readonly Socket sock;
+        public DataCommunication()
         {
-            string ip = ConfigurationManager.AppSettings["FlightServerIP"];
-            short port = short.Parse(ConfigurationManager.AppSettings["FlightInfoPort"]);
-            Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            string ip = FlightSimulator.Properties.Settings.Default.FlightServerIP;
+            int port = FlightSimulator.Properties.Settings.Default.DebugPort;
+            sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             sock.Connect(new IPEndPoint(IPAddress.Parse(ip), port));
 
-            byte[] bytes = Encoding.ASCII.GetBytes(s);
-            sock.Send(bytes);
 
+        }
+
+        public void Send_string(string path, double value)
+        {
+            string formatter = "set {0}={1}\r\n";
+            string message = String.Format(formatter, path, value);
+
+            byte[] bytes = Encoding.ASCII.GetBytes(message);
+            sock.Send(bytes);
+        }
+
+        public void close()
+        {
             sock.Close();
         }
     }

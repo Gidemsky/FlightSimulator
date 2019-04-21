@@ -11,5 +11,8 @@
     <Setting Name="FlightCommandPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5402</Value>
     </Setting>
+    <Setting Name="DebugPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5050</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

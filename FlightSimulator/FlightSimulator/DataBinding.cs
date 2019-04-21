@@ -11,6 +11,16 @@ namespace FlightSimulator
     {
         double elevator;
         double aileron;
+        double rudder;
+        double throttle;
+
+        double prev_rudder;
+        double prev_throttle;
+
+        const double MIN_RUDDER_CHANGE = 0.01;
+        const double MIN_THROTTLE_CHANGE = 0.01;
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -45,6 +55,40 @@ namespace FlightSimulator
             }
         }
 
+        public double Rudder
+        {
+            get
+            {
+                return rudder;
+            }
+            set
+            {
+                if (Math.Abs(rudder - prev_rudder) < MIN_RUDDER_CHANGE)
+                {
+                    rudder = value;
+                    return;
+                }
+                rudder = prev_rudder = value;
+                data_comm.Send_string("\\controls\\rudder", rudder);
+                OnPropertyChanged("RudderString");
+                OnPropertyChanged("Rudder");
+            }
+        }
+
+        public double Throttle
+        {
+            get
+            {
+                return throttle;
+            }
+            set
+            {
+                throttle = value;
+                OnPropertyChanged("ThrottleString");
+                OnPropertyChanged("Throttle");
+            }
+        }
+
         public string ElevatorString
         {
             get
@@ -61,10 +105,31 @@ namespace FlightSimulator
             }
         }
 
-        public DataBinding()
+        public string RudderString
         {
-            elevator = 0.0;
-            aileron = 0.0;
+            get
+            {
+                double intermediate = Math.Truncate(rudder * 100) / 100;
+                return String.Format("{0:N2}", intermediate);
+            }
         }
+
+        public string ThrottleString
+        {
+            get
+            {
+                double intermediate = Math.Truncate(throttle * 100) / 100;
+                return String.Format("{0:N2}", intermediate);
+            }
+        }
+
+        public static double MIN_THROTTLE_CHANGE1 => MIN_THROTTLE_CHANGE;
+
+        DataCommunication data_comm;
+        public DataBinding(DataCommunication data_comm)
+        {
+            this.data_comm = data_comm;
+        }
+
     }
 }
