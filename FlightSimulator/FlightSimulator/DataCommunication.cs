@@ -14,26 +14,26 @@ namespace FlightSimulator
         readonly Socket sock;
         public DataCommunication()
         {
-            string ip = FlightSimulator.Properties.Settings.Default.FlightServerIP;
-            int port = FlightSimulator.Properties.Settings.Default.FlightCommandPort;
-            sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            sock.Connect(new IPEndPoint(IPAddress.Parse(ip), port));
+            //string ip = FlightSimulator.Properties.Settings.Default.FlightServerIP;
+            //int port = FlightSimulator.Properties.Settings.Default.DebugPort;
+            //sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //sock.Connect(new IPEndPoint(IPAddress.Parse(ip), port));
 
 
         }
 
         public void Send_string(string path, double value)
         {
-            string formatter = "set {0}={1}\r\n";
-            string message = String.Format(formatter, path, value);
+            //string formatter = "set {0}={1}\r\n";
+            //string message = String.Format(formatter, path, value);
 
-            byte[] bytes = Encoding.ASCII.GetBytes(message);
-            sock.Send(bytes);
+            //byte[] bytes = Encoding.ASCII.GetBytes(message);
+            //sock.Send(bytes);
         }
 
         public void close()
         {
-            sock.Close();
+            //sock.Close();
         }
     }
 }

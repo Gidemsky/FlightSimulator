@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightSimulator.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -20,8 +21,18 @@ namespace FlightSimulator
         const double MIN_RUDDER_CHANGE = 0.01;
         const double MIN_THROTTLE_CHANGE = 0.01;
 
+        public CommandHandler DoTheThing
+        {
+            get
+            {
+                return new CommandHandler(new Action(() => Bla()));
+            }
+        }
 
+        void Bla()
+        {
 
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string propName)
