@@ -1,6 +1,7 @@
 ﻿using FlightSimulator.Model.EventArgs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,7 +55,14 @@ namespace FlightSimulator.Views
         public double Elevator
         {
             get { return Convert.ToDouble(GetValue(ElevatorProperty)); }
-            set { SetValue(ElevatorProperty, value); }
+            set {
+                SetValue(ElevatorProperty, value);
+            }
+        }
+
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         /// <summary>How often should be raised StickMove event in degrees</summary>
@@ -103,6 +111,7 @@ namespace FlightSimulator.Views
 
         /// <summary>This event fires once the joystick is captured</summary>
         public event EmptyJoystickEventHandler Captured;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private Point _startPos;
         private double _prevAileron, _prevElevator;
@@ -154,7 +163,10 @@ namespace FlightSimulator.Views
 
             if (Moved == null ||
                 (!(Math.Abs(_prevAileron - Aileron) > AileronStep) && !(Math.Abs(_prevElevator - Elevator) > ElevatorStep)))
+            {
                 return;
+
+            }
 
             Moved?.Invoke(this, new VirtualJoystickEventArgs { Aileron = Aileron, Elevator = Elevator });
             _prevAileron = Aileron;

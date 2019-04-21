@@ -4,9 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlightSimulator"
+        xmlns:views="clr-namespace:FlightSimulator.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <views:Joystick Grid.Column="2" x:Name="MyJoystick" Grid.RowSpan="3">
+            
+        </views:Joystick>
+
+        <Label Name="bla" Content="{Binding ElevatorString}">
+
+        </Label>
+
+        <Label Grid.Row="1" Content="{Binding AileronString}">
+
+        </Label>
+
+        <Button Click="Button_Click" Grid.Row="2"></Button>
     </Grid>
 </Window>
