@@ -63,12 +63,12 @@ namespace FlightSimulator
             }
             set
             {
+                rudder = value;
                 if (Math.Abs(rudder - prev_rudder) < MIN_RUDDER_CHANGE)
                 {
-                    rudder = value;
                     return;
                 }
-                rudder = prev_rudder = value;
+                prev_rudder = value;
                 data_comm.Send_string("\\controls\\rudder", rudder);
                 OnPropertyChanged("RudderString");
                 OnPropertyChanged("Rudder");
@@ -81,9 +81,16 @@ namespace FlightSimulator
             {
                 return throttle;
             }
+
             set
             {
                 throttle = value;
+                if (Math.Abs(throttle - prev_throttle) < MIN_THROTTLE_CHANGE)
+                {
+                    return;
+                }
+                prev_throttle = value;
+                data_comm.Send_string("/controls/engines/current-engine/throttle", throttle);
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");
             }
