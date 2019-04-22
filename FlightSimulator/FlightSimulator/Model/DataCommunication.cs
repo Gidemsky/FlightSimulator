@@ -17,7 +17,7 @@ namespace FlightSimulator
             string ip = FlightSimulator.Properties.Settings.Default.FlightServerIP;
             int port = FlightSimulator.Properties.Settings.Default.FlightInfoPort;
             sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            sock.Connect(new IPEndPoint(IPAddress.Parse(ip), port));
+            //sock.Connect(new IPEndPoint(IPAddress.Parse(ip), port));
         }
 
         public void Send_string(string path, double value)
