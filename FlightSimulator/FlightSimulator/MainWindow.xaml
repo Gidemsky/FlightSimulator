@@ -43,7 +43,7 @@
                 </Grid>
             </Grid>
         </TabItem>
-        <TabItem Header="David ben david">
+        <TabItem Header="David Ben-David">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
