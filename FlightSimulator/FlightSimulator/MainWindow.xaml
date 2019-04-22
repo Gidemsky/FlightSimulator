@@ -43,7 +43,7 @@
                 </Grid>
             </Grid>
         </TabItem>
-        <TabItem Header="Auto Pilot">
+        <TabItem Header="Auto Pilot" FontWeight="Bold">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
