@@ -80,7 +80,7 @@ namespace FlightSimulator
                     return;
                 }
                 prev_rudder = value;
-                data_comm.Send_string("\\controls\\rudder", rudder);
+                data_comm.Send_string("controls/flight/rudder ", rudder);
                 OnPropertyChanged("RudderString");
                 OnPropertyChanged("Rudder");
             }
@@ -101,7 +101,9 @@ namespace FlightSimulator
                     return;
                 }
                 prev_throttle = value;
-                data_comm.Send_string("/controls/engines/current-engine/throttle", throttle);
+                //string msg = throttle.ToString();
+                //msg = "controls/engines/current-engine/throttle " + throttle.ToString();
+                data_comm.Send_string("controls/engines/current-engine/throttle ", throttle);
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");
             }
