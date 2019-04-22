@@ -62,7 +62,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataBinding.cs" />
-    <Compile Include="DataCommunication.cs" />
+    <Compile Include="Model\DataCommunication.cs" />
+    <Compile Include="FlightBoardBinding.cs" />
+    <Compile Include="Model\InfoCommunication.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>

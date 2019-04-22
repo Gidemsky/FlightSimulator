@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:FlightSimulator"
         xmlns:views="clr-namespace:FlightSimulator.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="800">
+        Title="MainWindow" Height="650" Width="1000">
     <TabControl>
-        <TabItem Header="Manual" FontWeight="Bold">
 
-            <Grid>
+        <Grid>
+            <TabItem Header="Manual" FontWeight="Bold">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
                     <ColumnDefinition Width="100"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
@@ -24,6 +25,10 @@
                 Value="{Binding Throttle}">
 
                 </Slider>
+
+                <views:FlightBoard Grid.Column="0" x:Name="Fli" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                </views:FlightBoard>
 
                 <views:Joystick Grid.Column="1" x:Name="MyJoystick" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
 
