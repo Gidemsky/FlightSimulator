@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="650" Width="800">
     <TabControl>
-        <TabItem Header="Gidi">
+        <TabItem Header="Manual" FontWeight="Bold">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -43,18 +43,19 @@
                 </Grid>
             </Grid>
         </TabItem>
-        <TabItem Header="David Ben-David">
+        <TabItem Header="Auto Pilot" FontWeight="Bold">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="100"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <TextBox Grid.Row="0" Name="text_box">
-                    
-                </TextBox>
-                
-                <Grid Grid.Row="1">
+                <TextBox Grid.Row="0" Name="text_box" Margin="0,0,0,99.2" Grid.RowSpan="2"/>
+
+                <Grid Margin="0,491,0,0.2" Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
