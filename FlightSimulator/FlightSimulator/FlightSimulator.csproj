@@ -61,9 +61,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataBinding.cs" />
-    <Compile Include="Model\DataCommunication.cs" />
-    <Compile Include="FlightBoardBinding.cs" />
+    <Compile Include="Model\ServerConnect.cs" />
+    <Compile Include="ViewModels\FlightBoardView.cs" />
+    <Compile Include="ViewModels\DataBinding.cs" />
+    <Compile Include="Model\server.cs" />
+    <Compile Include="ViewModels\FlightBoardBinding.cs" />
     <Compile Include="Model\InfoCommunication.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -74,6 +76,7 @@
     <Compile Include="Model\Interface\ISettingsModel.cs" />
     <Compile Include="ViewModels\BaseNotify.cs" />
     <Compile Include="ViewModels\FlightBoardViewModel.cs" />
+    <Compile Include="Views\SettingButton.cs" />
     <Compile Include="ViewModels\Windows\SettingsWindowViewModel.cs" />
     <Compile Include="Views\FlightBoard.xaml.cs">
       <DependentUpon>FlightBoard.xaml</DependentUpon>

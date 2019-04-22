@@ -10,7 +10,9 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="500"></ColumnDefinition>
+            <ColumnDefinition Width="0"></ColumnDefinition>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="500"/>
             <ColumnDefinition Width="500"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -18,7 +20,7 @@
         </Grid.RowDefinitions>
 
 
-        <TabControl Grid.Column="1">
+        <TabControl Grid.Column="3" Margin="0,0,0,-0.333">
             <TabItem Header="Manual" FontWeight="Bold">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -72,20 +74,13 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Button Grid.Column="0" Content="OK" Command="{Binding DoTheThing}"></Button>
-
-                        <Button Grid.Column="1" Content="Clear" Click="Button_Clear"></Button>
                     </Grid>
 
                 </Grid>
             </TabItem>
         </TabControl>
 
-
-        <views:FlightBoard Grid.Column="0" x:Name="MyFlightBoard" HorizontalAlignment="Center" VerticalAlignment="Center">
-
-        </views:FlightBoard>
-
     </Grid>
-    
-    
+
+
 </Window>
