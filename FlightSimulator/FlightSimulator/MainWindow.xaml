@@ -7,70 +7,85 @@
         xmlns:views="clr-namespace:FlightSimulator.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="650" Width="1000">
-    <TabControl>
 
-        <Grid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"></ColumnDefinition>
+            <ColumnDefinition Width="500"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <TabControl Grid.Column="1">
             <TabItem Header="Manual" FontWeight="Bold">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="500"></ColumnDefinition>
-                    <ColumnDefinition Width="100"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="100"></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <Slider Grid.Column="0" Name="Rudder_Slider" Grid.RowSpan="1" Orientation="Vertical" Margin="20" HorizontalAlignment="Center" Minimum="0" Maximum="1"
-                Value="{Binding Throttle}">
-
-                </Slider>
-
-                <views:FlightBoard Grid.Column="0" x:Name="Fli" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-
-                </views:FlightBoard>
-
-                <views:Joystick Grid.Column="1" x:Name="MyJoystick" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-
-                </views:Joystick>
-
-                <Slider Grid.Column="2" Value="{Binding Rudder}" Grid.RowSpan="1" Grid.Row="3" Margin="20" Minimum="-1" Maximum="1">
-
-                </Slider>
-
-                <Grid Grid.Row="1" Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="{Binding ThrottleString}"></Label>
-                    <Label Grid.Row="1" Content="{Binding RudderString}"></Label>
-                </Grid>
-            </Grid>
-        </TabItem>
-        <TabItem Header="Auto Pilot">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="100"></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <TextBox Grid.Row="0" Name="text_box" Margin="0,0,0,99.2" Grid.RowSpan="2"/>
-
-                <Grid Margin="0,491,0,0.2" Grid.RowSpan="2">
+                <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="75"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Content="OK" Command="{Binding DoTheThing}"></Button>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                    </Grid.RowDefinitions>
 
-                    <Button Grid.Column="1" Content="Clear" Click="Button_Clear"></Button>
+                    <Slider Grid.Column="0" Name="Rudder_Slider" Grid.RowSpan="1" Orientation="Vertical" Margin="20" HorizontalAlignment="Center" Minimum="0" Maximum="1"
+                Value="{Binding Throttle}">
+
+                    </Slider>
+
+                    <views:Joystick Grid.Column="2" x:Name="MyJoystick" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    </views:Joystick>
+
+                    <Slider Grid.Column="1" Value="{Binding Rudder}" Grid.RowSpan="1" Grid.Row="3" Margin="20" Minimum="-1" Maximum="1">
+
+                    </Slider>
+
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Content="{Binding ThrottleString}"></Label>
+                        <Label Grid.Row="1" Content="{Binding RudderString}"></Label>
+                    </Grid>
                 </Grid>
+            </TabItem>
 
-            </Grid>
-        </TabItem>
-    </TabControl>
+            <TabItem Header="Auto Pilot" FontWeight="Bold">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="100"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0" Name="text_box" Margin="0,0,0,99.2" Grid.RowSpan="2"/>
+
+                    <Grid Margin="0,491,0,0.2" Grid.RowSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Content="OK" Command="{Binding DoTheThing}"></Button>
+
+                        <Button Grid.Column="1" Content="Clear" Click="Button_Clear"></Button>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+
+        <views:FlightBoard Grid.Column="0" x:Name="MyFlightBoard" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+        </views:FlightBoard>
+
+    </Grid>
+    
+    
 </Window>

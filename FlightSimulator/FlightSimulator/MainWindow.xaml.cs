@@ -83,5 +83,10 @@ namespace FlightSimulator
             text_box.Background = Brushes.White;
 
         }
+
+        private void MyJoystick_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
