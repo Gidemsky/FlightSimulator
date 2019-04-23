@@ -58,6 +58,7 @@ namespace FlightSimulator
                 elevator = value;
                 System.Console.WriteLine("elevator value sending ");
                 OnPropertyChanged("ElevatorString");
+                OnPropertyChanged("Elevator");
             }
         }
         
@@ -72,6 +73,7 @@ namespace FlightSimulator
                 aileron = value;
                 System.Console.WriteLine("aliron value sending ");
                 OnPropertyChanged("AileronString");
+                OnPropertyChanged("Aileron");
             }
         }
 
@@ -122,7 +124,8 @@ namespace FlightSimulator
         {
             get
             {
-                return elevator.ToString();
+                double intermediate = Math.Truncate(rudder * 100) / 100;
+                return String.Format("{0:N2}", intermediate);
             }
         }
         
@@ -130,7 +133,8 @@ namespace FlightSimulator
         {
             get
             {
-                return aileron.ToString();
+                double intermediate = Math.Truncate(rudder * 100) / 100;
+                return String.Format("{0:N2}", intermediate);
             }
         }
 
@@ -153,12 +157,6 @@ namespace FlightSimulator
         }
 
         public static double MIN_THROTTLE_CHANGE1 => MIN_THROTTLE_CHANGE;
-
-        //DataCommunication data_comm;
-        //public DataBinding(DataCommunication data_comm)
-        //{
-        //    this.data_comm = data_comm;
-        //}
 
     }
 }
