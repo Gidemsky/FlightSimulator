@@ -63,7 +63,8 @@
             </TextBlock.LayoutTransform>
         </TextBlock>
 
-        <TextBlock Name="ElevatorVal" Grid.Row="0" Grid.Column="2" 
+        <!-- Todo: add binding-->
+        <TextBlock Name="ElevatorValue" Grid.Row="0" Grid.Column="2" 
                    Text="{Binding ElementName=Stick,Path=Elevator,StringFormat=N2}"
                    Margin="17.8,2,17.4,447.6" Grid.RowSpan="2">
             <TextBlock.LayoutTransform>
@@ -75,7 +76,8 @@
                    Text="← aileron →" FontSize="24" HorizontalAlignment="Center"
                    Margin="30" FontWeight="Bold"></TextBlock>
 
-        <TextBlock Name="AileronVal" Grid.Row="0" Grid.Column="1" Width="92"
+        <!-- Todo: add binding-->
+        <TextBlock Name="AileronValue" Grid.Row="0" Grid.Column="1" Width="92"
                    HorizontalAlignment="Right" FontSize="12" FontWeight="Bold"
                    Text="{Binding ElementName=Stick,Path=Elevator,StringFormat=N2}" Margin="0,30,2.2,18"></TextBlock>
 
