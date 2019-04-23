@@ -1,5 +1,4 @@
 ﻿using FlightSimulator.Model;
-using FlightSimulator.Properties;
 using FlightSimulator.ViewModels;
 using FlightSimulator.Views;
 using System;
@@ -14,9 +13,12 @@ namespace FlightSimulator
 {
     class FlightBoardBinding : BaseNotify, INotifyPropertyChanged
     {
-        private ICommand settings;
+        private ICommand settingsCommand;
 
         private ICommand connect;
+
+        Settings settings;
+
 
         double latitude;
         double longitude;
@@ -59,7 +61,7 @@ namespace FlightSimulator
         {
             get
             {
-                return settings ?? (settings = new CommandHandler(() => OnClick()));
+                return settingsCommand ?? (settingsCommand = new CommandHandler(() => OnClick()));
             }
         }
 
@@ -68,8 +70,8 @@ namespace FlightSimulator
          * */
         private void OnClick()
         {
-            var settingButton = new Settings();
-            //settingButton.show();
+            settings = new Settings();
+            settings.ShowDialog();
         }
 
         //public ICommand DisConnectCommand
