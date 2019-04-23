@@ -17,7 +17,6 @@ namespace FlightSimulator.Model
     class CmdConnection : BaseNotify
     {
         private static CmdConnection self;
-        private TcpListener tcpListener = null;
         bool isConnceted;
         TcpClient client;
         Thread sendingThread;
