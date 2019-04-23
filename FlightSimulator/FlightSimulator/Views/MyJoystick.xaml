@@ -21,6 +21,7 @@
 
         </Slider>
 
+        
         <local:Joystick Grid.Column="2" x:Name="myJoystick" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             
         </local:Joystick>
