@@ -19,13 +19,13 @@
 
         </local:FlightBoard>
 
-        <Button Content="Connect" HorizontalAlignment="Center"
+        <Button x:Name="ButtonConnect" Content="Connect" HorizontalAlignment="Center"
                 Margin="159,30,270,0" VerticalAlignment="Top"
-                Padding="10" Width="71"></Button>
+                Padding="10" Width="71" Command="{Binding ConnectButton}" ClickMode="Press"></Button>
 
-        <Button Content="Settings" HorizontalAlignment="Center"
+        <Button x:Name="SettingsButton" Content="Settings" HorizontalAlignment="Center"
                 Margin="272,30,164,0" VerticalAlignment="Top"
-                Padding="10"/>
+                Padding="10" Command="{Binding SettingsCommand}"></Button>
 
     </Grid>
 </UserControl>
