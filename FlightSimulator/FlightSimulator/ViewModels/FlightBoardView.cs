@@ -11,24 +11,20 @@ namespace FlightSimulator.ViewModels
 {
     class FlightBoardView : BaseNotify
     {
-        private ICommand SettingButton;
+        private ICommand settingButton;
 
-        private ICommand connectButton;
+        private ICommand connect;
 
         //private ICommand _disConnectCommand;
 
         private double lat, lon;
-
+        #region
 
         public ICommand ConnectButton
         {
             get
             {
-                return connectButton ?? (connectButton = new CommandHandler(() => OnClickConnect()));
-            }
-            set
-            {
-                //TODO:
+                return connect ?? (connect = new CommandHandler(() => OnClickConnect()));
             }
         }
 
@@ -60,7 +56,7 @@ namespace FlightSimulator.ViewModels
         {
             get
             {
-                return SettingButton ?? (SettingButton = new CommandHandler(() => OnClick()));
+                return settingButton ?? (settingButton = new CommandHandler(() => OnClick()));
             }
         }
 
@@ -69,8 +65,8 @@ namespace FlightSimulator.ViewModels
          * */
         private void OnClick()
         {
-            SettingButton settingButton = new SettingButton();
-            settingButton.Show();
+            var settingButton = new SettingButton();
+            //settingButton.Show();
         }
 
         //public ICommand DisConnectCommand
@@ -86,5 +82,6 @@ namespace FlightSimulator.ViewModels
         //    Info.Instance.shouldStop = true;
         //    Commands.Instance.disConnect();
         //}
+        #endregion
     }
 }

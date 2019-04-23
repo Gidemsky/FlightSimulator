@@ -80,7 +80,7 @@ namespace FlightSimulator
                     return;
                 }
                 prev_rudder = value;
-                data_comm.Send_string("controls/flight/rudder ", rudder);
+                //data_comm.Send_string("controls/flight/rudder ", rudder);
                 OnPropertyChanged("RudderString");
                 OnPropertyChanged("Rudder");
             }
@@ -103,7 +103,7 @@ namespace FlightSimulator
                 prev_throttle = value;
                 //string msg = throttle.ToString();
                 //msg = "controls/engines/current-engine/throttle " + throttle.ToString();
-                data_comm.Send_string("controls/engines/current-engine/throttle ", throttle);
+                //data_comm.Send_string("controls/engines/current-engine/throttle ", throttle);
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");
             }
@@ -145,11 +145,11 @@ namespace FlightSimulator
 
         public static double MIN_THROTTLE_CHANGE1 => MIN_THROTTLE_CHANGE;
 
-        DataCommunication data_comm;
-        public DataBinding(DataCommunication data_comm)
-        {
-            this.data_comm = data_comm;
-        }
+        //DataCommunication data_comm;
+        //public DataBinding(DataCommunication data_comm)
+        //{
+        //    this.data_comm = data_comm;
+        //}
 
     }
 }

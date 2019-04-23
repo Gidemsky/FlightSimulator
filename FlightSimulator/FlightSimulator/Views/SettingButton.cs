@@ -22,9 +22,9 @@ namespace FlightSimulator.Views
         private SettingsWindowViewModel settingsWindowViewModel;
         public SettingButton() // should create a class with the XAML of settings button
         {
-            InitializeComponent();
+            //InitializeComponent();
             settingsWindowViewModel = new SettingsWindowViewModel(ApplicationSettingsModel.Instance);
-            DataContext = settingsWindowViewModel;
+            //DataContext = settingsWindowViewModel;
         }
     }
 }

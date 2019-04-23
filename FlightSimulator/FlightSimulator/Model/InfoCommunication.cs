@@ -35,7 +35,7 @@ namespace FlightSimulator
             set
             {
                 lon = value;
-                NotifyPropertyChanged("Lon");
+                //NotifyPropertyChanged("Lon");
             }
         }
 
@@ -48,7 +48,7 @@ namespace FlightSimulator
             set
             {
                 lat = value;
-                NotifyPropertyChanged("Lat");
+                //NotifyPropertyChanged("Lat");
             }
         }
 
@@ -66,10 +66,10 @@ namespace FlightSimulator
             }
         }
 
-        private Info()
-        {
-            shouldStop = false;
-        }
+        //private Info()
+        //{
+        //    shouldStop = false;
+        //}
 
         public void closeThread()
         {

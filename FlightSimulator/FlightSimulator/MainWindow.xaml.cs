@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using FlightSimulator.Views;
+using FlightSimulator.ViewModels;
 
 namespace FlightSimulator
 {
@@ -23,9 +24,15 @@ namespace FlightSimulator
     /// </summary>
     public partial class MainWindow : Window
     {
+        //DataBinding db;
         public MainWindow()
         {
+
             InitializeComponent();
+            //db = new DataBinding();
+
+            //DataContext = db;
+            //MyJoystick.Moved += MyJoystick_Moved;
         }
     }
 }
