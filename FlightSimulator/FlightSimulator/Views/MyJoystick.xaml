@@ -5,38 +5,80 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulator.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="500">
+             d:DesignHeight="650" d:DesignWidth="550">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition/>
             <ColumnDefinition Width="75"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Slider Grid.Column="0" Name="Rudder_Slider" Grid.RowSpan="1" Orientation="Vertical" Margin="20" HorizontalAlignment="Center" Minimum="0" Maximum="1"
-                Value="{Binding Throttle}">
+        <local:Joystick x:Name="myJoystick" Grid.Row="1" HorizontalAlignment="Center"
+                        VerticalAlignment="Center" Height="430" Margin="0,10,2.2,9.6" Width="373" Grid.Column="1"/>
+
+        <Slider Name="ThrottleSlider" Grid.Column="0"  Grid.Row="1" Orientation="Vertical"
+                Margin="72,5,10,99.6" HorizontalAlignment="Center" Minimum="0" Maximum="1"
+                Value="{Binding Throttle}" Grid.RowSpan="2" Width="18">
 
         </Slider>
 
-        
-        <local:Joystick Grid.Column="2" x:Name="myJoystick" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            
-        </local:Joystick>
+        <TextBlock Name="ThrottleLabel" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"
+                   Text="← thorttel →" FontSize="24" FontWeight="Bold" Margin="35" Height="37">
+            <TextBlock.LayoutTransform>
+                <RotateTransform Angle="90"/>
+            </TextBlock.LayoutTransform>
+        </TextBlock>
 
-        <Slider Grid.Column="1" Value="{Binding Rudder}" Grid.RowSpan="1" Grid.Row="3" Margin="20" Minimum="-1" Maximum="1">
+        <Slider Name="RudderSlider" Grid.Column="1" Grid.Row="2" Value="{Binding Rudder}" 
+                Margin="23.4,4.4,19.6,69.6" Minimum="-1" Maximum="1">
 
         </Slider>
 
-        <Grid Grid.Row="1" Grid.Column="0">
+        <TextBlock Name="RudderLabel"  Grid.Column="1" Grid.Row="2"
+                   Text="← rudder →" FontSize="24" Margin="95.4,35.4,101.6,34.6"
+                   FontWeight="Bold" HorizontalAlignment="Center" Width="131"></TextBlock>
+
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,323.6,99.6" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="{Binding ThrottleString}"></Label>
-            <Label Grid.Row="1" Content="{Binding RudderString}"></Label>
         </Grid>
+
+        <Label Grid.Row="2" Grid.Column="2" Margin="9.8,4.4,10.4,52.6"
+               FontSize="20" FontWeight="Bold" Content="{Binding RudderString}"/>
+
+        <Label Grid.Row="0" Grid.Column="0" Margin="26,54,10,10"
+               FontSize="20" FontWeight="Bold" Content="{Binding ThrottleString}"/>
+
+        <TextBlock Name="ElevatorLabel"  Grid.Row="1" Grid.Column="2"  Text="← elevator →"
+                   FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="20" Height="35">
+            <TextBlock.LayoutTransform>
+                <RotateTransform Angle="90"/>
+            </TextBlock.LayoutTransform>
+        </TextBlock>
+
+        <TextBlock Name="ElevatorVal" Grid.Row="0" Grid.Column="2" 
+                   Text="{Binding ElementName=Stick,Path=Elevator,StringFormat=N2}"
+                   Margin="17.8,2,17.4,447.6" Grid.RowSpan="2">
+            <TextBlock.LayoutTransform>
+                <RotateTransform Angle="90"/>
+            </TextBlock.LayoutTransform>
+        </TextBlock>
+
+        <TextBlock Name="AileronLabel" Grid.Row="0" Grid.Column="1"
+                   Text="← aileron →" FontSize="24" HorizontalAlignment="Center"
+                   Margin="30" FontWeight="Bold"></TextBlock>
+
+        <TextBlock Name="AileronVal" Grid.Row="0" Grid.Column="1" Width="92"
+                   HorizontalAlignment="Right" FontSize="12" FontWeight="Bold"
+                   Text="{Binding ElementName=Stick,Path=Elevator,StringFormat=N2}" Margin="0,30,2.2,18"></TextBlock>
+
+
     </Grid>
 </UserControl>

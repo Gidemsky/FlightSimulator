@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace FlightSimulator.Views
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for Settings.xaml
     /// </summary>
     public partial class Window1 : Window
     {

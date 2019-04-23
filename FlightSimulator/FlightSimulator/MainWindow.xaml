@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:FlightSimulator"
         xmlns:views="clr-namespace:FlightSimulator.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1000">
+        Title="MainWindow" Height="650" Width="1050">
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"></ColumnDefinition>
-            <ColumnDefinition Width="500"></ColumnDefinition>
+            <ColumnDefinition Width="550"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
