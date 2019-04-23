@@ -62,9 +62,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Command.cs" />
     <Compile Include="Model\ServerConnect.cs" />
-    <Compile Include="ViewModels\FlightBoardView.cs" />
-    <Compile Include="ViewModels\DataBinding.cs" />
+    <Compile Include="ViewModels\AutoPilotBinding.cs" />
+    <Compile Include="ViewModels\ManualBinding.cs" />
     <Compile Include="Model\server.cs" />
     <Compile Include="ViewModels\FlightBoardBinding.cs" />
     <Compile Include="Model\InfoCommunication.cs" />

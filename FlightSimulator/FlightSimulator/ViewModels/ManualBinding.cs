@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator
 {
-    class DataBinding: INotifyPropertyChanged
+    class ManualBinding : INotifyPropertyChanged
     {
         double elevator;
         double aileron;
@@ -18,8 +18,15 @@ namespace FlightSimulator
         double prev_rudder;
         double prev_throttle;
 
+        ServerConnect sc;
+
         const double MIN_RUDDER_CHANGE = 0.01;
         const double MIN_THROTTLE_CHANGE = 0.01;
+
+        public ManualBinding(ServerConnect sc)
+        {
+            this.sc = sc;
+        }
 
         public CommandHandler DoTheThing
         {
@@ -49,6 +56,7 @@ namespace FlightSimulator
             set
             {
                 elevator = value;
+                System.Console.WriteLine("elevator value sending ");
                 OnPropertyChanged("ElevatorString");
             }
         }
@@ -62,6 +70,7 @@ namespace FlightSimulator
             set
             {
                 aileron = value;
+                System.Console.WriteLine("aliron value sending ");
                 OnPropertyChanged("AileronString");
             }
         }
@@ -80,7 +89,8 @@ namespace FlightSimulator
                     return;
                 }
                 prev_rudder = value;
-                //data_comm.Send_string("controls/flight/rudder ", rudder);
+                System.Console.WriteLine("rudder value sending ");
+                sc.Send_string("controls/flight/rudder ", rudder);
                 OnPropertyChanged("RudderString");
                 OnPropertyChanged("Rudder");
             }
@@ -101,9 +111,8 @@ namespace FlightSimulator
                     return;
                 }
                 prev_throttle = value;
-                //string msg = throttle.ToString();
-                //msg = "controls/engines/current-engine/throttle " + throttle.ToString();
-                //data_comm.Send_string("controls/engines/current-engine/throttle ", throttle);
+                System.Console.WriteLine("rudder value sending ");
+                sc.Send_string("controls/engines/current-engine/throttle ", throttle);
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");
             }

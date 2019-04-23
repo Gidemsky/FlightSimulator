@@ -25,10 +25,5 @@ namespace FlightSimulator.Views
             InitializeComponent();
             DataContext = new FlightBoardBinding();
         }
-
-        private void Settings(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
