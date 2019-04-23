@@ -111,7 +111,7 @@ namespace FlightSimulator
                     return;
                 }
                 prev_throttle = value;
-                System.Console.WriteLine("rudder value sending ");
+                System.Console.WriteLine("Throtle value sending ");
                 sc.Send_string("controls/engines/current-engine/throttle ", throttle);
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");
