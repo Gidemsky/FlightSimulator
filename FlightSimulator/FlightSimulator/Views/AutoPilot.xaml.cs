@@ -25,7 +25,7 @@ namespace FlightSimulator.Views
         public AutoPilot()
         {
             InitializeComponent();
-            DataContext = new AutoPilotBinding(ServerConnect.Instance);
+            DataContext = new AutoPilotBinding(CmdConnection.Instance);
         }
     }
 }

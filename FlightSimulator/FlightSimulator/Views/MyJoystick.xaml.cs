@@ -24,7 +24,7 @@ namespace FlightSimulator.Views
         public MyJoystick()
         {
             InitializeComponent();
-            this.DataContext = new ManualBinding(ServerConnect.Instance);
+            this.DataContext = new ManualBinding(CmdConnection.Instance);
         }
     }
 }

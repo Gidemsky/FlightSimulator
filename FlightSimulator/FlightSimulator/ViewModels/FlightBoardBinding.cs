@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -31,21 +32,25 @@ namespace FlightSimulator
             }
         }
 
+        /**
+         * the action that are taken when the "Connect" button us clicked
+         */
         private void OnClickConnect()
         {
-            ServerConnect.Instance.createConnection(ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightInfoPort);
-            //Commands.Instance.Open(ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
-            //if (!Commands.Instance.getIsConnect())
-            //{
-            //    new Thread(() =>
-            //    {
+            if (!CmdConnection.Instance.getisConnected())
+            {
+                //create new two connections in seperated thread in order to avoid the program to stuck
+                new Thread(() =>
+                {
 
-            //        Info.Instance.connect();
-            //        Commands.Instance.connect();
+                    InfoConnection.Instance.infoCreateConnection(
+                        ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightInfoPort);
+                    CmdConnection.Instance.createCmdConnection(
+                        ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
 
-            //    }).Start();
-            //}
-            //else
+                }).Start();
+            }//TODO: check 
+            //if - else
             //{
             //    new Thread(() =>
             //    {

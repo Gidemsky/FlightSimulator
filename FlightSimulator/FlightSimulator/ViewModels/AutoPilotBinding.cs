@@ -13,12 +13,12 @@ namespace FlightSimulator.ViewModels
         private ICommand _okCommand;
         private ICommand _clearCommand;
         private string text;
-        private ServerConnect model;
+        private CmdConnection model;
 
         /**
          * CTOR, accepts the commands channel as a model.
          * */
-        public AutoPilotBinding(ServerConnect mod)
+        public AutoPilotBinding(CmdConnection mod)
         {
             text = "";
             model = mod;
