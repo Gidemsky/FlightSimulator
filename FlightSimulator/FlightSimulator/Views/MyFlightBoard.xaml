@@ -25,7 +25,7 @@
 
         <Button Content="Settings" HorizontalAlignment="Center"
                 Margin="272,30,164,0" VerticalAlignment="Top"
-                Padding="10"></Button>
+                Padding="10"/>
 
     </Grid>
 </UserControl>
