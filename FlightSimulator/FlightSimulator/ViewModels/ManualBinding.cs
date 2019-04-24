@@ -17,29 +17,21 @@ namespace FlightSimulator
 
         double prev_rudder;
         double prev_throttle;
+        double prev_elevator;
+        double prev_aileron;
 
         CmdConnection sc;
 
         const double MIN_RUDDER_CHANGE = 0.01;
         const double MIN_THROTTLE_CHANGE = 0.01;
+        const double MIN_ELEVATOR_CHANGE = 0.01;
+        const double MIN_AILERON_CHANGE = 0.01;
 
         public ManualBinding(CmdConnection sc)
         {
             this.sc = sc;
         }
 
-        public CommandHandler DoTheThing
-        {
-            get
-            {
-                return new CommandHandler(new Action(() => Bla()));
-            }
-        }
-
-        void Bla()
-        {
-
-        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string propName)
@@ -56,7 +48,11 @@ namespace FlightSimulator
             set
             {
                 elevator = value;
-                System.Console.WriteLine("elevator value sending");
+                if (Math.Abs(elevator - prev_rudder) < MIN_ELEVATOR_CHANGE)
+                {
+                    return;
+                }
+                prev_elevator = value;
                 sc.Send_string("/controls/flight/elevator", elevator);
                 OnPropertyChanged("ElevatorString");
                 OnPropertyChanged("Elevator");
@@ -72,7 +68,11 @@ namespace FlightSimulator
             set
             {
                 aileron = value;
-                System.Console.WriteLine("aliron value sending ");
+                if (Math.Abs(aileron - prev_rudder) < MIN_AILERON_CHANGE)
+                {
+                    return;
+                }
+                prev_aileron = value;
                 sc.Send_string("/controls/flight/aileron", aileron);
                 OnPropertyChanged("AileronString");
                 OnPropertyChanged("Aileron");
@@ -93,7 +93,6 @@ namespace FlightSimulator
                     return;
                 }
                 prev_rudder = value;
-                System.Console.WriteLine("rudder value sending ");
                 sc.Send_string("/controls/flight/rudder", rudder);
                 OnPropertyChanged("RudderString");
                 OnPropertyChanged("Rudder");
@@ -115,7 +114,6 @@ namespace FlightSimulator
                     return;
                 }
                 prev_throttle = value;
-                System.Console.WriteLine("Throtle value sending ");
                 sc.Send_string("/controls/engines/current-engine/throttle", throttle);
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");
@@ -126,8 +124,7 @@ namespace FlightSimulator
         {
             get
             {
-                double intermediate = Math.Truncate(rudder * 100) / 100;
-                return String.Format("{0:N2}", intermediate);
+                return varStringFactoring(elevator);
             }
         }
         
@@ -135,8 +132,7 @@ namespace FlightSimulator
         {
             get
             {
-                double intermediate = Math.Truncate(rudder * 100) / 100;
-                return String.Format("{0:N2}", intermediate);
+                return varStringFactoring(aileron);
             }
         }
 
@@ -144,8 +140,7 @@ namespace FlightSimulator
         {
             get
             {
-                double intermediate = Math.Truncate(rudder * 100) / 100;
-                return String.Format("{0:N2}", intermediate);
+                return varStringFactoring(rudder);
             }
         }
 
@@ -153,9 +148,14 @@ namespace FlightSimulator
         {
             get
             {
-                double intermediate = Math.Truncate(throttle * 100) / 100;
-                return String.Format("{0:N2}", intermediate);
+                return varStringFactoring(throttle);
             }
+        }
+
+        public string varStringFactoring(double var)
+        {
+            double intermediate = Math.Truncate(var * 100) / 100;
+            return String.Format("{0:N2}", intermediate);
         }
 
         public static double MIN_THROTTLE_CHANGE1 => MIN_THROTTLE_CHANGE;

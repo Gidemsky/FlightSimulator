@@ -19,7 +19,7 @@
                  VerticalScrollBarVisibility="Visible"
                  TextAlignment="Left" TextWrapping="Wrap" 
                  Text="{Binding TextProperty, UpdateSourceTrigger=PropertyChanged}" 
-                 Background="{Binding Background}" 
+                 Background="{Binding Background, UpdateSourceTrigger=PropertyChanged}" 
                  AcceptsReturn="True"></TextBox>
  
 

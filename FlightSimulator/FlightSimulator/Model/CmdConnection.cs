@@ -21,6 +21,7 @@ namespace FlightSimulator.Model
         TcpClient client;
         Thread sendingThread;
         private NetworkStream stream = null;
+        private TcpListener tcpListener = null;
 
         public static CmdConnection Instance
         {

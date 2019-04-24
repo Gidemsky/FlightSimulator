@@ -26,6 +26,7 @@ namespace FlightSimulator
 
         private bool isShouldStop;
 
+
         static class Constants
         {
             public const int LONGTITUDE = 0;
@@ -82,7 +83,8 @@ namespace FlightSimulator
                             string incomingInfo = Encoding.ASCII.GetString(bytes);
                             infoRecivedSplitter(incomingInfo);
                             //Console.WriteLine("Incoming position information:");
-                            //Console.WriteLine(incomingInfo);
+                            //Console.WriteLine("Lon {0}", Lon);	                            
+                            //Console.WriteLine("Lat {0}", Lat);
                         }
                     }
                     ns.Close();
