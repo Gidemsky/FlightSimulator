@@ -15,23 +15,16 @@ namespace FlightSimulator.ViewModels
         private string text;
         private CmdConnection model;
 
-        /**
-         * CTOR, accepts the commands channel as a model.
-         * */
         public AutoPilotBinding(CmdConnection mod)
         {
             text = "";
             model = mod;
         }
 
-        /**
-         * The textbox commands property.
-         * */
         public string AutoPilotCommands
         {
             set
             {
-                // take the value from the textbox and notify the changes in color and commands.
                 text = value;
                 NotifyPropertyChanged("AutoPilotCommands");
                 NotifyPropertyChanged("Color");
@@ -43,9 +36,6 @@ namespace FlightSimulator.ViewModels
             }
         }
 
-        /**
-         * The Color property, white when there aren't new commands to send, pink when there are.
-         * */
         public string Color
         {
             get
@@ -56,14 +46,11 @@ namespace FlightSimulator.ViewModels
                 }
                 else
                 {
-                    return "red";
+                    return "Pink";
                 }
             }
         }
 
-        /**
-         * Lexing the input, emptying the text and parses the commands via the commands channel.
-         * */
         private void Parser()
         {
             string[] delimiter = { "\r\n" };
@@ -73,34 +60,32 @@ namespace FlightSimulator.ViewModels
             //model.sendMessage(result);
         }
 
-        /**
-         * clears the textbox.
-         * */
-        private void ClearTextBox()
-        {
-            AutoPilotCommands = "";
-        }
-
-        /**
-         * binded with the OK button, activates the Parser on click.
-         * */
         public ICommand OkCommand
         {
             get
             {
-                return _okCommand ?? (_okCommand = new CommandHandler(() => Parser()));
+                return _okCommand ?? (_okCommand = new CommandHandler(() => OkClick()));
             }
         }
 
-        /**
-         * binded with the CLEAR button, activates the ClearTextBox on click.
-         * */
+        private void OkClick()
+        {
+
+        }
+
         public ICommand ClearCommand
         {
             get
             {
-                return _clearCommand ?? (_clearCommand = new CommandHandler(() => ClearTextBox()));
+                return _clearCommand ?? (_clearCommand = new CommandHandler(() => ClearClick()));
             }
+        }
+
+        private void ClearClick()
+        {
+            text = "";
+            NotifyPropertyChanged(text);
+
         }
     }
 }

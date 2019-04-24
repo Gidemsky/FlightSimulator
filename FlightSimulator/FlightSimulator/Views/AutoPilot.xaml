@@ -11,19 +11,27 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition/>
+            <RowDefinition Height="123.2"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Name="text_box" Margin="0,0,0,99.2" Grid.RowSpan="2"/>
+        <TextBox Grid.Row="0" Name="text_box" Margin="0,0,0,121.6" Grid.RowSpan="2" 
+                 VerticalScrollBarVisibility="Visible"
+                 TextAlignment="Left" TextWrapping="Wrap" 
+                 Text="{Binding TextProperty,UpdateSourceTrigger=PropertyChanged}" 
+                 Background="{Binding Color,UpdateSourceTrigger=PropertyChanged}" 
+                 AcceptsReturn="True"></TextBox>
+ 
 
-        <Grid Margin="0,491,0,0.2" Grid.RowSpan="2">
+        <Grid Margin="0,1.6,0,0.6" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="OK" Command="{Binding DoTheThing}"></Button>
-
+            <Button Grid.Column="0" Content="OK" FontWeight="Bold"
+                    Command="{Binding OkCommand}"></Button>
+            <Button Grid.Column="1" Content="Clear" FontWeight="Bold"
+                    Command="{Binding ClearCommand}"></Button>
         </Grid>
 
     </Grid>
