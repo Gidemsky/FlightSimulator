@@ -53,7 +53,6 @@ namespace FlightSimulator
                     return;
                 }
                 prev_elevator = value;
-                //System.Console.WriteLine("elevator value sending");
                 sc.Send_string("/controls/flight/elevator", elevator);
                 OnPropertyChanged("ElevatorString");
                 OnPropertyChanged("Elevator");
@@ -74,7 +73,6 @@ namespace FlightSimulator
                     return;
                 }
                 prev_aileron = value;
-                //System.Console.WriteLine("aliron value sending ");
                 sc.Send_string("/controls/flight/aileron", aileron);
                 OnPropertyChanged("AileronString");
                 OnPropertyChanged("Aileron");
@@ -95,7 +93,6 @@ namespace FlightSimulator
                     return;
                 }
                 prev_rudder = value;
-                //System.Console.WriteLine("rudder value sending ");
                 sc.Send_string("/controls/flight/rudder", rudder);
                 OnPropertyChanged("RudderString");
                 OnPropertyChanged("Rudder");
@@ -117,7 +114,6 @@ namespace FlightSimulator
                     return;
                 }
                 prev_throttle = value;
-                //System.Console.WriteLine("Throtle value sending ");
                 sc.Send_string("/controls/engines/current-engine/throttle", throttle);
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");

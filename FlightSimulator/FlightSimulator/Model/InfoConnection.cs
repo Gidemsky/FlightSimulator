@@ -26,6 +26,7 @@ namespace FlightSimulator
 
         private bool isShouldStop;
 
+
         static class Constants
         {
             public const int LONGTITUDE = 0;
@@ -81,8 +82,9 @@ namespace FlightSimulator
                             ns.Read(bytes, 0, client.ReceiveBufferSize);
                             string incomingInfo = Encoding.ASCII.GetString(bytes);
                             infoRecivedSplitter(incomingInfo);
-                            Console.WriteLine("Incoming position information:");
-                            Console.WriteLine(incomingInfo);
+                            //Console.WriteLine("Incoming position information:");
+                            //Console.WriteLine("Lon {0}", Lon);	                            
+                            //Console.WriteLine("Lat {0}", Lat);
                         }
                     }
                     ns.Close();
@@ -104,8 +106,8 @@ namespace FlightSimulator
         public void infoRecivedSplitter(string info)
         {
             string[] infosplited = info.Split(',');
-            FlightBoardViewModel.Instance.Lon = float.Parse(infosplited[0]);
-            FlightBoardViewModel.Instance.Lat = float.Parse(infosplited[1]);
+            FlightBoardViewModel.Instance.Lon = float.Parse(infosplited[Constants.LONGTITUDE]);
+            FlightBoardViewModel.Instance.Lat = float.Parse(infosplited[Constants.LATITUDE]);
         }
     }
 }
