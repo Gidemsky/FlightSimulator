@@ -24,9 +24,13 @@ namespace FlightSimulator
                
         private static InfoConnection serverListenerInstance = null;
 
-        private float lon, lat;
-
         private bool isShouldStop;
+
+        static class Constants
+        {
+            public const int LONGTITUDE = 0;
+            public const int LATITUDE = 1;
+        }
 
         private InfoConnection()
         {
@@ -62,7 +66,6 @@ namespace FlightSimulator
                 serverListener = new TcpListener(ep);
                 serverListener.Start();
                 Console.WriteLine("Connecting to client ip:{0} , on port:{1}", ip, port.ToString());
-                Console.WriteLine("Waiting for client's connections...");
                 client = serverListener.AcceptTcpClient();
                 Console.WriteLine("Client connected!!!");
                 //the Lambda ecpression of the reciving information
@@ -76,13 +79,10 @@ namespace FlightSimulator
                         {
                             bytes = new byte[client.ReceiveBufferSize];
                             ns.Read(bytes, 0, client.ReceiveBufferSize);
-                            //TODO: Encoding.UTF8.GetString(, 0, );
                             string incomingInfo = Encoding.ASCII.GetString(bytes);
                             infoRecivedSplitter(incomingInfo);
-                            Console.WriteLine("Incoming position information:");
-                            //Console.WriteLine("Lon {0}", Lon);
-                            //Console.WriteLine("Lat {0}", Lat);
-                            Console.WriteLine(incomingInfo);
+                            //Console.WriteLine("Incoming position information:");
+                            //Console.WriteLine(incomingInfo);
                         }
                     }
                     ns.Close();
@@ -104,8 +104,8 @@ namespace FlightSimulator
         public void infoRecivedSplitter(string info)
         {
             string[] infosplited = info.Split(',');
-            FlightBoardViewModel.Instance.Lon = float.Parse(infosplited[0]);//TODO: create const of 1 and 2
-            FlightBoardViewModel.Instance.Lat = float.Parse(infosplited[1]);
+            FlightBoardViewModel.Instance.Lon = float.Parse(infosplited[Constants.LONGTITUDE]);
+            FlightBoardViewModel.Instance.Lat = float.Parse(infosplited[Constants.LATITUDE]);
         }
     }
 }

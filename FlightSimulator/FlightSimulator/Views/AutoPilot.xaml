@@ -18,8 +18,8 @@
         <TextBox Grid.Row="0" Name="text_box" Margin="0,0,0,121.6" Grid.RowSpan="2" 
                  VerticalScrollBarVisibility="Visible"
                  TextAlignment="Left" TextWrapping="Wrap" 
-                 Text="{Binding TextProperty,UpdateSourceTrigger=PropertyChanged}" 
-                 Background="{Binding Color,UpdateSourceTrigger=PropertyChanged}" 
+                 Text="{Binding TextProperty, UpdateSourceTrigger=PropertyChanged}" 
+                 Background="{Binding Background}" 
                  AcceptsReturn="True"></TextBox>
  
 
@@ -29,9 +29,9 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="OK" FontWeight="Bold"
-                    Command="{Binding OkCommand}"></Button>
+                    Command="{Binding OkButton, UpdateSourceTrigger=PropertyChanged}"></Button>
             <Button Grid.Column="1" Content="Clear" FontWeight="Bold"
-                    Command="{Binding ClearCommand}"></Button>
+                    Command="{Binding ClearButton, UpdateSourceTrigger=PropertyChanged}"></Button>
         </Grid>
 
     </Grid>
