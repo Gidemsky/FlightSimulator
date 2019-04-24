@@ -48,32 +48,6 @@ namespace FlightSimulator
             }
         }
 
-        public float Lon
-        {
-            get
-            {
-                return lon;
-            }
-            set
-            {
-                lon = value;
-                NotifyPropertyChanged("Lon");
-            }
-        }
-
-        public float Lat
-        {
-            get
-            {
-                return lat;
-            }
-            set
-            {
-                lat = value;
-                NotifyPropertyChanged("Lat");
-            }
-        }
-
         /**
          * The connection function of the server.
          * this function connects the simulator to this server
@@ -106,8 +80,8 @@ namespace FlightSimulator
                             string incomingInfo = Encoding.ASCII.GetString(bytes);
                             infoRecivedSplitter(incomingInfo);
                             Console.WriteLine("Incoming position information:");
-                            Console.WriteLine("Lon {0}", Lon);
-                            Console.WriteLine("Lat {0}", Lat);
+                            //Console.WriteLine("Lon {0}", Lon);
+                            //Console.WriteLine("Lat {0}", Lat);
                             Console.WriteLine(incomingInfo);
                         }
                     }
@@ -130,42 +104,8 @@ namespace FlightSimulator
         public void infoRecivedSplitter(string info)
         {
             string[] infosplited = info.Split(',');
-            Lon = float.Parse(infosplited[0]);//TODO: create const of 1 and 2
-            Lat = float.Parse(infosplited[1]);
+            FlightBoardViewModel.Instance.Lon = float.Parse(infosplited[0]);//TODO: create const of 1 and 2
+            FlightBoardViewModel.Instance.Lat = float.Parse(infosplited[1]);
         }
-
-        //public void listen(TcpClient client)
-        //{
-        //    Byte[] bytes;
-        //    NetworkStream ns = client.GetStream();
-        //    while (!shouldStop)
-        //    {
-        //        if (client.ReceiveBufferSize > 0)
-        //        {
-        //            bytes = new byte[client.ReceiveBufferSize];
-        //            ns.Read(bytes, 0, client.ReceiveBufferSize);
-        //            string incomingInfo = Encoding.ASCII.GetString(bytes);
-        //            infoRecivedSplitter(incomingInfo);
-        //            Console.WriteLine("Incoming position information:");
-        //            Console.WriteLine("Lon {0}", Lon);
-        //            Console.WriteLine("Lat {0}", Lat);
-        //            Console.WriteLine(incomingInfo);
-        //        }
-        //    }
-        //    ns.Close();
-        //    client.Close();
-        //    serverListener.Stop();
-        //}
-
-        //public void closeThread()
-        //{
-        //    threadI.Abort();
-        //}
-
-        //public void disConnect()
-        //{
-        //    shouldStop = true;
-        //    _client.Close();
-        //}
     }
 }

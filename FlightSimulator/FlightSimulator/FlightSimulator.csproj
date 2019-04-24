@@ -62,13 +62,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Command.cs" />
     <Compile Include="Model\CmdConnection.cs" />
     <Compile Include="ViewModels\AutoPilotBinding.cs" />
     <Compile Include="ViewModels\ManualBinding.cs" />
     <Compile Include="Model\InfoConnection.cs" />
     <Compile Include="ViewModels\FlightBoardBinding.cs" />
-    <Compile Include="Model\InfoCommunication.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>

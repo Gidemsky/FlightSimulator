@@ -25,10 +25,14 @@ namespace FlightSimulator.Views
     /// </summary>
     public partial class FlightBoard : UserControl
     {
+        FlightBoardViewModel fltBrdVM = new FlightBoardViewModel();
         ObservableDataSource<Point> planeLocations = null;
         public FlightBoard()
         {
             InitializeComponent();
+            //fltBrdVM = new FlightBoardViewModel();
+            //DataContext = fltBrdVM;
+            this.fltBrdVM.PropertyChanged += Vm_PropertyChanged;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -44,7 +48,7 @@ namespace FlightSimulator.Views
         {
             if(e.PropertyName.Equals("Lat") || e.PropertyName.Equals("Lon"))
             {
-                Point p1 = new Point(0,0);            // Fill here!
+                Point p1 = new Point(fltBrdVM.Lat,fltBrdVM.Lon);// Fill here!
                 planeLocations.AppendAsync(Dispatcher, p1);
             }
         }

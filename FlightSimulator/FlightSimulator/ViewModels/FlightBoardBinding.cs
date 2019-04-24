@@ -20,10 +20,6 @@ namespace FlightSimulator
 
         Settings settings;
 
-
-        double latitude;
-        double longitude;
-
         #region
 
         public ICommand ConnectButton
@@ -51,15 +47,7 @@ namespace FlightSimulator
                         ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
 
                 }).Start();
-            }//TODO: check 
-            //if - else
-            //{
-            //    new Thread(() =>
-            //    {
-            //        Commands.Instance.disConnect();
-            //        Commands.Instance.connect();
-            //    }).Start();
-            //}
+            }//TODO: check if already connected situation needed
         }
 
         public ICommand SettingsCommand
@@ -78,53 +66,6 @@ namespace FlightSimulator
             settings = new Settings();
             settings.ShowDialog();
         }
-
-        //public ICommand DisConnectCommand
-        //{
-        //    get
-        //    {
-        //        return _disConnectCommand ?? (_disConnectCommand = new CommandHandler(() => OnClickConnect()));
-        //    }
-        //}
-
-        //private void OnClickDisConnect()
-        //{
-        //    Info.Instance.shouldStop = true;
-        //    Commands.Instance.disConnect();
-        //}
         #endregion
-
-        public double Latitude
-        {
-            get
-            {
-                return latitude;
-            }
-            set
-            {
-                latitude = value;
-                OnPropertyChanged("LatitudeString");
-            }
-        }
-
-        public double Longitude
-        {
-            get
-            {
-                return longitude;
-            }
-            set
-            {
-                longitude = value;
-                OnPropertyChanged("LongitudeString");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged(string propName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-        }
     }
 }
