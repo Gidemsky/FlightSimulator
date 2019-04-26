@@ -67,13 +67,5 @@ namespace FlightSimulator
             settings.ShowDialog();
         }
         #endregion
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //public void OnPropertyChanged(string propName)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-        //}
-
     }
 }
