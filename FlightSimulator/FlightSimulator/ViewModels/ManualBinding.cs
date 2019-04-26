@@ -53,7 +53,7 @@ namespace FlightSimulator
                     return;
                 }
                 prev_elevator = value;
-                sc.Send_string("/controls/flight/elevator", elevator);
+                sc.SendString("/controls/flight/elevator", elevator);
                 OnPropertyChanged("ElevatorString");
                 OnPropertyChanged("Elevator");
             }
@@ -73,7 +73,7 @@ namespace FlightSimulator
                     return;
                 }
                 prev_aileron = value;
-                sc.Send_string("/controls/flight/aileron", aileron);
+                sc.SendString("/controls/flight/aileron", aileron);
                 OnPropertyChanged("AileronString");
                 OnPropertyChanged("Aileron");
             }
@@ -93,7 +93,7 @@ namespace FlightSimulator
                     return;
                 }
                 prev_rudder = value;
-                sc.Send_string("/controls/flight/rudder", rudder);
+                sc.SendString("/controls/flight/rudder", rudder);
                 OnPropertyChanged("RudderString");
                 OnPropertyChanged("Rudder");
             }
@@ -114,7 +114,7 @@ namespace FlightSimulator
                     return;
                 }
                 prev_throttle = value;
-                sc.Send_string("/controls/engines/current-engine/throttle", throttle);
+                sc.SendString("/controls/engines/current-engine/throttle", throttle);
                 OnPropertyChanged("ThrottleString");
                 OnPropertyChanged("Throttle");
             }
@@ -124,7 +124,7 @@ namespace FlightSimulator
         {
             get
             {
-                return varStringFactoring(elevator);
+                return VarStringFactoring(elevator);
             }
         }
         
@@ -132,7 +132,7 @@ namespace FlightSimulator
         {
             get
             {
-                return varStringFactoring(aileron);
+                return VarStringFactoring(aileron);
             }
         }
 
@@ -140,7 +140,7 @@ namespace FlightSimulator
         {
             get
             {
-                return varStringFactoring(rudder);
+                return VarStringFactoring(rudder);
             }
         }
 
@@ -148,11 +148,11 @@ namespace FlightSimulator
         {
             get
             {
-                return varStringFactoring(throttle);
+                return VarStringFactoring(throttle);
             }
         }
 
-        public string varStringFactoring(double var)
+        public string VarStringFactoring(double var)
         {
             double intermediate = Math.Truncate(var * 100) / 100;
             return String.Format("{0:N2}", intermediate);

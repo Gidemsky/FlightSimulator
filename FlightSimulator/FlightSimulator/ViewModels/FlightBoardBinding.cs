@@ -15,11 +15,8 @@ namespace FlightSimulator
     class FlightBoardBinding : BaseNotify, INotifyPropertyChanged
     {
         private ICommand settingsCommand;
-
         private ICommand connect;
-
         Settings settings;
-
         #region
 
         public ICommand ConnectButton
@@ -30,24 +27,21 @@ namespace FlightSimulator
             }
         }
 
-        /**
-         * the action that are taken when the "Connect" button us clicked
-         */
         private void OnClickConnect()
         {
-            if (!CmdConnection.Instance.getisConnected())
+            if (!CmdConnection.Instance.GetIsConnected())
             {
-                //create new two connections in seperated thread in order to avoid the program to stuck
+                // create two connections in order to avoid the program to stuck
                 new Thread(() =>
                 {
 
-                    InfoConnection.Instance.infoCreateConnection(
+                    InfoConnection.Instance.InfoCreateConnection(
                         ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightInfoPort);
-                    CmdConnection.Instance.createCmdConnection(
+                    CmdConnection.Instance.CreateCmdConnection(
                         ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
 
                 }).Start();
-            }//TODO: check if already connected situation needed
+            }
         }
         
         public ICommand SettingsCommand

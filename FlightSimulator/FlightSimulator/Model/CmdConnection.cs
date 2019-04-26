@@ -12,7 +12,6 @@ namespace FlightSimulator.Model
 {
     /**
      * The command communication socket.
-     * this is client user of the simulator that responsiable sending commands to the simulator.
      */
     class CmdConnection : BaseNotify
     {
@@ -35,14 +34,17 @@ namespace FlightSimulator.Model
         }
 
         /**
-         * getter of the member isconnected the acts as tag of the correct situation
+         * Getter of 'isConnected'
          */
-        internal bool getisConnected()
+        internal bool GetIsConnected()
         {
             return(this.isConnceted);
         }
 
-        public void setisConnected(bool status)
+        /**
+         * Setter of 'isConnected'
+         */
+        public void SetIsConnected(bool status)
         {
             this.isConnceted = status;
         }
@@ -50,7 +52,7 @@ namespace FlightSimulator.Model
         /**
          * Creates the Tcp Client connection to the server in order to send commands.
          */
-        public void createCmdConnection(string ip, int port)
+        public void CreateCmdConnection(string ip, int port)
         {
             try
             {
@@ -59,7 +61,7 @@ namespace FlightSimulator.Model
                 stream = client.GetStream();
                 stream.Flush();
                 isConnceted = true;
-                Console.WriteLine("Server Connected!!!");
+                Console.WriteLine("Server Connected!");
             } catch (Exception exception)
             {
                 Console.WriteLine("ERROR");
@@ -67,21 +69,20 @@ namespace FlightSimulator.Model
             }
         }
             
-        public void Send_string(string path, double value)
+        public void SendString(string path, double value)
         {
             string viewCommand = "set {0} {1}\r\n";
             viewCommand = String.Format(viewCommand, path, value);
-            //Console.WriteLine("The out going command is:{0}",viewCommand);
             SendReadyMessage(viewCommand);
         }
 
         /**
-         * converts the string enterd to an array of strings
+         * Converts the string enterd to an array of strings
          * and sends the ready message to the relevant path in the simulator
          */
         public void SendReadyMessage(string command)
         {
-            string[] cmd = commandAdjustment(command);
+            string[] cmd = CommandAdjustment(command);
             sendingThread = new Thread(() =>
             {
                 if (!isConnceted)
@@ -92,7 +93,7 @@ namespace FlightSimulator.Model
                 NetworkStream ns = client.GetStream();
                 foreach (string split in cmd)
                 {
-                    // Sends the commands to server
+                    // sends the commands to server
                     specificCommandLine = split;
                     specificCommandLine += "\r\n";
                     byte[] buffer = Encoding.ASCII.GetBytes(specificCommandLine);
@@ -104,9 +105,9 @@ namespace FlightSimulator.Model
         }
 
         /**
-         * adjust the command line to the right suitable data structure
+         * Adjust the command line to the relevant format.
          */
-        private string[] commandAdjustment(string line)
+        private string[] CommandAdjustment(string line)
         {
             string[] endLine = { "\r\n" };
             string[] readyOutPut = line.Split(endLine, StringSplitOptions.None);

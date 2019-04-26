@@ -61,7 +61,6 @@ namespace FlightSimulator.ViewModels
         {
             get
             {
-                //if there is nothing writen then white alse Red color
                 return cmdAPLine == "" ? "White" : "Pink";
             }
         }

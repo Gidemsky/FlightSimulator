@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -20,13 +19,9 @@ namespace FlightSimulator
     {
         private TcpListener serverListener;
         TcpClient client;
-
         Thread listernerThread;
-               
         private static InfoConnection serverListenerInstance = null;
-
         private bool isShouldStop;
-
 
         static class Constants
         {
@@ -55,12 +50,10 @@ namespace FlightSimulator
         }
 
         /**
-         * The connection function of the server.
-         * this function connects the simulator to this server
-         * in order to send the information we need from the client - 
-         * the simulator
+         * Connects the simulator to the server in order to send
+         * the information we need from the client (the simulator).
          */
-        public void infoCreateConnection(string ip, int port)
+        public void InfoCreateConnection(string ip, int port)
         {
             try
             {
@@ -69,8 +62,7 @@ namespace FlightSimulator
                 serverListener.Start();
                 Console.WriteLine("Connecting to client. ip:{0}, on port:{1}", ip, port.ToString());
                 client = serverListener.AcceptTcpClient();
-                Console.WriteLine("Client connected!!!");
-                //the Lambda ecpression of the reciving information
+                Console.WriteLine("Client connected!");
                 listernerThread = new Thread(() =>
                 {
                     Byte[] bytes;
@@ -82,10 +74,7 @@ namespace FlightSimulator
                             bytes = new byte[client.ReceiveBufferSize];
                             ns.Read(bytes, 0, client.ReceiveBufferSize);
                             string incomingInfo = Encoding.ASCII.GetString(bytes);
-                            infoRecivedSplitter(incomingInfo);
-                            //Console.WriteLine("Incoming position information:");
-                            //Console.WriteLine("Lon {0}", Lon);	                            
-                            //Console.WriteLine("Lat {0}", Lat);
+                            InfoReceivedSplitter(incomingInfo);
                         }
                     }
                     ns.Close();
@@ -101,10 +90,10 @@ namespace FlightSimulator
         }
 
         /**
-         * information recieved by the client saperated by this function
-         * update the lon and lt variable
+         * Splits the string with the data that recieved from the client,
+         * and updates the lon and lt values.
          */
-        public void infoRecivedSplitter(string info)
+        public void InfoReceivedSplitter(string info)
         {
             string[] infosplited = info.Split(',');
             try
@@ -118,7 +107,7 @@ namespace FlightSimulator
                 Console.WriteLine("Server or the incoming position information - ERROR");
                 Console.WriteLine("Closing the Client's connection");
                 isShouldStop = true;
-                CmdConnection.Instance.setisConnected(false);
+                CmdConnection.Instance.SetIsConnected(false);
             }
         }
     }

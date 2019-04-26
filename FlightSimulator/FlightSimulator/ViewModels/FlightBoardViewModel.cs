@@ -10,10 +10,8 @@ namespace FlightSimulator.ViewModels
 {
     public class FlightBoardViewModel : BaseNotify
     {
-
         double lat;
         double lon;
-
         private static FlightBoardViewModel instanceFlightBoardViewModel = null;
 
         public FlightBoardViewModel()
