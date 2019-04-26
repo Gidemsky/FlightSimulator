@@ -105,7 +105,7 @@ namespace FlightSimulator.Model
         }
 
         /**
-         * Adjust the command line to the relevant format.
+         * Adjust the command line to the relevant suitable data structure.
          */
         private string[] CommandAdjustment(string line)
         {

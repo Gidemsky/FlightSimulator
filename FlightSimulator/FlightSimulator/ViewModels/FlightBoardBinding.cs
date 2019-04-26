@@ -31,7 +31,7 @@ namespace FlightSimulator
         {
             if (!CmdConnection.Instance.GetIsConnected())
             {
-                // create two connections in order to avoid the program to stuck
+                // create two connections in seperated thread in order to avoid the program to stuck
                 new Thread(() =>
                 {
 
