@@ -68,12 +68,12 @@ namespace FlightSimulator
         }
         #endregion
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OnPropertyChanged(string propName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-        }
+        //public void OnPropertyChanged(string propName)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        //}
 
     }
 }

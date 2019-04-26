@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Threading.Tasks;
 using FlightSimulator.ViewModels;
 using System.Threading;
+using FlightSimulator.Model;
 
 namespace FlightSimulator
 {
@@ -66,7 +67,7 @@ namespace FlightSimulator
                 IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ip), port);
                 serverListener = new TcpListener(ep);
                 serverListener.Start();
-                Console.WriteLine("Connecting to client ip:{0} , on port:{1}", ip, port.ToString());
+                Console.WriteLine("Connecting to client. ip:{0}, on port:{1}", ip, port.ToString());
                 client = serverListener.AcceptTcpClient();
                 Console.WriteLine("Client connected!!!");
                 //the Lambda ecpression of the reciving information
@@ -106,8 +107,19 @@ namespace FlightSimulator
         public void infoRecivedSplitter(string info)
         {
             string[] infosplited = info.Split(',');
-            FlightBoardViewModel.Instance.Lon = float.Parse(infosplited[Constants.LONGTITUDE]);
-            FlightBoardViewModel.Instance.Lat = float.Parse(infosplited[Constants.LATITUDE]);
+            try
+            {
+                FlightBoardViewModel.Instance.Lon = float.Parse(infosplited[Constants.LONGTITUDE]);
+                FlightBoardViewModel.Instance.Lat = float.Parse(infosplited[Constants.LATITUDE]);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                Console.WriteLine("Server or the incoming position information - ERROR");
+                Console.WriteLine("Closing the Client's connection");
+                isShouldStop = true;
+                CmdConnection.Instance.setisConnected(false);
+            }
         }
     }
 }

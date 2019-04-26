@@ -21,7 +21,6 @@ namespace FlightSimulator.Model
         TcpClient client;
         Thread sendingThread;
         private NetworkStream stream = null;
-        private TcpListener tcpListener = null;
 
         public static CmdConnection Instance
         {
@@ -43,6 +42,11 @@ namespace FlightSimulator.Model
             return(this.isConnceted);
         }
 
+        public void setisConnected(bool status)
+        {
+            this.isConnceted = status;
+        }
+
         /**
          * Creates the Tcp Client connection to the server in order to send commands.
          */
@@ -50,13 +54,12 @@ namespace FlightSimulator.Model
         {
             try
             {
-                Console.WriteLine("Trying to connecting");
+                Console.WriteLine("Connecting to server. ip:{0}, on port:{1}", ip, port.ToString());
                 client = new TcpClient(ip, port);
                 stream = client.GetStream();
-                Console.WriteLine("connected!!!");
                 stream.Flush();
                 isConnceted = true;
-                Console.WriteLine("connected to the ip:{0} on the port:{1}", ip, port.ToString());
+                Console.WriteLine("Server Connected!!!");
             } catch (Exception exception)
             {
                 Console.WriteLine("ERROR");
@@ -68,7 +71,7 @@ namespace FlightSimulator.Model
         {
             string viewCommand = "set {0} {1}\r\n";
             viewCommand = String.Format(viewCommand, path, value);
-            Console.WriteLine("The out going command is:{0}",viewCommand);
+            //Console.WriteLine("The out going command is:{0}",viewCommand);
             SendReadyMessage(viewCommand);
         }
 
@@ -109,29 +112,5 @@ namespace FlightSimulator.Model
             string[] readyOutPut = line.Split(endLine, StringSplitOptions.None);
             return readyOutPut;
         }
-
-        //public void Close()
-        //{
-        //    isConnceted = true;
-        //}
-
-        //public bool IsOpen()
-        //{
-        //    return this.tcpListener != null;
-        //}
-
-        //public string Data
-        //{
-        //    get
-        //    {
-        //        return socketData;
-        //    }
-        //    set
-        //    {
-        //        socketData = value;
-        //        NotifyPropertyChanged("Data");
-        //    }
-        //}
-
     }
 }
