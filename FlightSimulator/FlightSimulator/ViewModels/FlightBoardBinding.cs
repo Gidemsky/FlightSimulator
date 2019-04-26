@@ -49,7 +49,7 @@ namespace FlightSimulator
                 }).Start();
             }//TODO: check if already connected situation needed
         }
-
+        
         public ICommand SettingsCommand
         {
             get
